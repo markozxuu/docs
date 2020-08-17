@@ -17,7 +17,7 @@ export const meta = {
   description: `How to use the ${PRODUCT_NAME} Git Integrations for GitHub, GitLab, or Bitbucket to automatic deploy from your project's repository for each push and ship to production on merge to the main branch.`,
   image: `${process.env.ASSETS}/docs/git-integrations/git-push.png`,
   editUrl: 'pages/docs/git-integrations/index.mdx',
-  lastEdited: '2020-08-04T21:21:17.000Z',
+  lastEdited: '2020-08-11T17:51:34.000Z',
 }
 
 ​​<ProductName /> provides integrations for your [GitHub](/docs/v2/git-integrations/vercel-for-github), [GitLab](/docs/v2/git-integrations/vercel-for-gitlab), and [Bitbucket](/docs/v2/git-integrations/vercel-for-bitbucket) projects, allowing for **automatic deployments on every branch push** and merge to the [Production Branch](#production-branch).
@@ -121,6 +121,37 @@ Whenever a new commit is then pushed to the branch you configured here, a [Produ
   borderRadius
 />
 <Caption>Configuring the Production Branch of your Project.</Caption>
+
+## Monorepos
+
+If you'd like to deploy multiple different directories within the same Git repository,
+you can do so by creating a separate Project for each directory and configuring the [Root Directory setting](/docs/build-step?query=root%20directory#root-directory) for it.
+
+The easiest way to achieve this is by [importing your Git repository](/docs/v2/git-integrations#quick-installation) multiple times and selecting a different
+Root Directory every time – until one Project was created for each of the relevant directories.
+
+<Image
+  src={`${process.env.ASSETS}/docs/common/monorepo-import.png`}
+  width={1284 / 2}
+  height={966 / 2}
+  shadow
+  borderRadius
+/>
+<Caption>Selecting a Root Directory for one of your new Projects.</Caption>
+
+Once you've created a separate Project for each of the directories within your Git repository,
+every commit will issue a Deployment for all connected Projects and display the resulting URLs on your pull requests and commits:
+
+<Image
+  src={`${process.env.ASSETS}/docs/common/monorepo-pr.png`}
+  width={1832 / 2}
+  height={702 / 2}
+/>
+<Caption>An example of Deployment URLs provided by a Git Integration.</Caption>
+
+Up to 20 Projects can be connected to the same Git repository. If you need to connect more, please [contact us](/support/request).
+
+Additionally, monorepos are currently only supported with the [GitHub Integration](/github). Support for [GitLab](/gitlab) and [Bitbucket](/bitbucket) are upcoming.
 
 export default ({ children }) => <Doc meta={meta}>{children}</Doc>
 
