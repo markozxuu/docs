@@ -10,7 +10,7 @@
   "orgV1Name": "Vercel",
   "productShortV1Name": "Now",
   "cliV1Name": "Vercel CLI",
-  "githubAppName": "Now",
-  "gitlabAppName": "Now",
-  "bitbucketAppName": "ZEIT Now"
+  "githubAppName": "Vercel",
+  "gitlabAppName": "Vercel",
+  "bitbucketAppName": "Vercel"
 }
