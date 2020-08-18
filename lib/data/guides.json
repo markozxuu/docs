@@ -244,13 +244,13 @@
     "published": "2020-08-18T12:00:00.860Z",
     "authors": ["mcsdev"],
     "url": "/guides/deploying-redwood-with-vercel",
-    "image": "https://og-image.now.sh/**Deploy%20RedwoodJS%20Apps**%20%3Cbr%2F%3E%20with%20Vercel.png?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fvercel-triangle-black.svg&images=https%3A%2F%2Fd33wubrfki0l68.cloudfront.net%2F492ed629970792d32ac857da0166a7d2308bad99%2F428b6%2Fimages%2Fdiecut.svg&widths=300&widths=350&heights=300&heights=350",
+    "image": "https://og-image.now.sh/**Deploy%20RedwoodJS%20Apps**%20%3Cbr%2F%3E%20with%20Vercel.png?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fvercel-triangle-black.svg&images=https%3A%2F%2Fd33wubrfki0l68.cloudfront.net%2F492ed629970792d32ac857da0166a7d2308bad99%2F428b6%2Fimages%2Fdiecut.svg&widths=300&widths=350&heights=undefined&heights=350",
     "name": "Redwood",
     "type": "app",
     "editUrl": "pages/guides/deploying-redwood-with-vercel.mdx",
     "example": "https://github.com/vercel/vercel/tree/master/examples/redwoodjs",
     "demo": "https://redwoodjs-example.vercel.app",
-    "lastEdited": "2020-08-18T10:32:05.000Z"
+    "lastEdited": "2020-08-18T10:38:23.000Z"
   },
   {
     "title": "Deploy Next.js and Userbase with Vercel",
