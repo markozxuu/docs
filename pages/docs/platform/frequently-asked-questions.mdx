@@ -14,7 +14,7 @@ export const meta = {
   title: 'Frequently Asked Questions',
   description: 'A list of frequently asked questions relating to deployments.',
   editUrl: 'pages/docs/platform/frequently-asked-questions.mdx',
-  lastEdited: '2020-08-04T21:21:17.000Z',
+  lastEdited: '2020-08-18T18:29:32.000Z',
 }
 
 ## Platform Version Detection
@@ -340,3 +340,21 @@ Alternatively, if you already added it to a Project, read <Link href="/docs/v2/c
 You can't leave a team if you are the last remaining owner or the last confirmed member. In order to leave it, you first have to designate a different confirmed member to be an owner of the team.
 
 If you are the only remaining member, you should delete the team instead.
+
+## Git Default Ignore List
+
+Deployments created using Vercel CLI will automatically [ignore several files](/docs/build-step?#ignored-files-and-folders) for security and performance reasons.
+
+However, these files are _not_ ignored for deployments created using the [Git Integration](/docs/git-integrations) and a warning is printed instead. This is because `.gitignore` determines which files should be ignored.
+
+If the file was intentionally committed to Git, you can ignore the warning.
+
+If the file was accidentally committed to Git, you can remove it using the following commands:
+
+```shell
+git rm file.txt                   # remove the file
+echo 'file.txt' >> .gitignore     # append file to .gitignore
+git add .gitignore                # stage the change
+git commit -m "Removed file.txt"  # commit the change
+git push                          # deploy the change
+```
