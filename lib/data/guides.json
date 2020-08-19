@@ -249,11 +249,11 @@
     "type": "app",
     "env": ["DATABASE_URL"],
     "envDescription": ["Your PostgreSQL connection string."],
-    "envLink": "https://redwoodjs.com/docs/deploy#3-prisma-and-database",
+    "envLink": ["https://redwoodjs.com/docs/deploy#3-prisma-and-database"],
     "editUrl": "pages/guides/deploying-redwood-with-vercel.mdx",
     "example": "https://github.com/redwoodjs/example-blog/tree/vercel-deploy",
     "demo": "https://redwoodjs-example-blog.vercel.app/",
-    "lastEdited": "2020-08-19T14:00:13.000Z"
+    "lastEdited": "2020-08-19T14:02:49.000Z"
   },
   {
     "title": "Deploy Next.js and Userbase with Vercel",

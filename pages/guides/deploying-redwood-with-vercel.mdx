@@ -19,11 +19,11 @@ export const meta = {
   type: 'app',
   env: ['DATABASE_URL'],
   envDescription: ['Your PostgreSQL connection string.'],
-  envLink: 'https://redwoodjs.com/docs/deploy#3-prisma-and-database',
+  envLink: ['https://redwoodjs.com/docs/deploy#3-prisma-and-database'],
   editUrl: 'pages/guides/deploying-redwood-with-vercel.mdx',
   example: 'https://github.com/redwoodjs/example-blog/tree/vercel-deploy',
   demo: 'https://redwoodjs-example-blog.vercel.app/',
-  lastEdited: '2020-08-19T14:00:13.000Z',
+  lastEdited: '2020-08-19T14:02:49.000Z',
 }
 
 [RedwoodJS](https://redwoodjs.com/) is an opinionated, full-stack, serverless web application framework that will allow you to build and deploy JAMstack applications with ease.
@@ -68,26 +68,7 @@ Your Redwood app is now ready for local development with the following command:
 <Snippet dark text="yarn redwood dev" />
 <Caption>Running the Redwood app locally.</Caption>
 
-## Step 2: Retrieving Environment Variable Values
-
-When [importing the project](/docs/git-integrations) into Vercel, you will be provided with the option to specify [environment variables](/docs/build-step#environment-variables). Make sure to add a `DATABASE_URL` environment variable with the connection string used.
-
-After adding the environment variables during the import process, you can manage them from the Vercel Dashboard. To keep them in sync with your local environment, use the following command:
-
-<Snippet dark text="vercel env pull" />
-<Caption>
-  Pulling the latest environment variables set in the Vercel Dashboard.
-</Caption>
-
-<Note>
-  You can find more information on using a database with Redwood in the{' '}
-  <Link href="https://redwoodjs.com/docs/deploy#prisma-and-database">
-    Redwood documentation
-  </Link>
-  .
-</Note>
-
-## Step 3: Deploy Your App with <NameWrapper name={PRODUCT_NAME} />
+## Step 2: Deploy Your App with <NameWrapper name={PRODUCT_NAME} />
 
 <DeploySection meta={meta} />
 
