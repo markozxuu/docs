@@ -10,66 +10,63 @@ import NameWrapper from '~/components/name/name-wrapper'
 
 export const meta = {
   title: `Deploy RedwoodJS with ${PRODUCT_NAME}`,
-  description: `Create a Redwood app and deploy it live with ${PRODUCT_NAME}.`,
+  description: `Create a Redwood blog and deploy it live with ${PRODUCT_NAME}.`,
   published: '2020-08-18T12:00:00.860Z',
   authors: ['mcsdev'],
   url: '/guides/deploying-redwood-with-vercel',
   image: `https://og-image.now.sh/**Deploy%20RedwoodJS%20Apps**%20%3Cbr%2F%3E%20with%20Vercel.png?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fvercel-triangle-black.svg&images=https%3A%2F%2Fd33wubrfki0l68.cloudfront.net%2F492ed629970792d32ac857da0166a7d2308bad99%2F428b6%2Fimages%2Fdiecut.svg&widths=300&widths=350&heights=undefined&heights=350`,
   name: 'Redwood',
   type: 'app',
+  env: ['DATABASE_URL', 'FILESTACK_API_KEY'],
   editUrl: 'pages/guides/deploying-redwood-with-vercel.mdx',
   example: 'https://github.com/redwoodjs/example-blog/tree/vercel-deploy',
   demo: 'https://redwoodjs-example-blog.vercel.app/',
-  lastEdited: '2020-08-19T08:22:39.000Z',
+  lastEdited: '2020-08-19T09:43:55.000Z',
 }
 
 [RedwoodJS](https://redwoodjs.com/) is an opinionated, full-stack, serverless web application framework that will allow you to build and deploy JAMstack applications with ease.
 
-In this guide, you will discover how to create and deploy a Redwood app to [Vercel](/), with the option to provide a connection string to persist app data with a database connection.
+In this guide, you will discover how to create and deploy a Redwood blog to [Vercel](/), backed by a [PostgreSQL](https://www.postgresql.org/) database connection.
 
 ## Step 1: Creating Your Redwood App
 
-Set up a new Redwood app by initializing the project template with [npm](https://www.npmjs.com/):
+Set up a new Redwood app by cloning the project template and moving into the project directory:
 
-<Snippet dark text="npm init redwood-app ./my-redwood-app" />
-<Caption>Initializing a Redwood app with npm.</Caption>
-
-Locate the `redwood.toml` file and change the `apiProxyPath` to `"/api"`. Your `redwood.toml` will look like this:
-
-```json
-[web]
-  port = 8910
-  apiProxyPath = "/api"
-[api]
-  port = 8911
-[browser]
-  open = true
-```
-
+<Snippet
+  dark
+  text="git clone https://github.com/redwoodjs/example-blog.git && cd example-blog"
+/>
 <Caption>
-  The <InlineCode>redwood.toml</InlineCode> file with an updated{' '}
-  <InlineCode>apiProxyPath</InlineCode> set.
+  Initializing a Redwood app and moving into the project directory.
 </Caption>
 
-## Step 2: Add a Connection String (Optional)
+Install the project dependencies with [Yarn](https://yarnpkg.com/):
 
-If you do not wish to use a database to persist app data, you can skip this step and continue to [step 3](#step-3:-deploy-your-app-with-vercel).
+<Snippet dark text="yarn install" />
+<Caption>Installing the project dependencies with Yarn.</Caption>
 
-In the `api/prisma/schema.prisma` file, ensure that the database provider is set to the one you are using, for example:
+Create a local SQLite database and seed it with the provided blog posts:
 
-```bash
-datasource DS {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-```
+<Snippet dark text="yarn redwood db up && yard redwood db seed" />
+<Caption>Creating and seeding a local SQLite database.</Caption>
 
-<Caption>
-  The <InlineCode>api/prisma/schema.prisma</InlineCode> file with the{' '}
-  <InlineCode>provider</InlineCode> set to <InlineCode>postgresql</InlineCode>.
-</Caption>
+<Note>
+  When importing the project to Vercel, you will need to add an environment
+  variable with the name <InlineCode>DATABASE_URL</InlineCode>, this will hold
+  the value of a supplied PostgreSQL connection string.
+</Note>
 
-Update the `.env` file with your database connection string. Once set, this will allow you to develop your app locally with a database connected.
+Use the provided Redwood script to set Vercel as the deployment target:
+
+<Snippet dark text="yarn redwood g deploy vercel" />
+<Caption>Setting the the project deployment target to Vercel.</Caption>
+
+Your Redwood app is now ready for local development with the following command:
+
+<Snippet dark text="yarn redwood dev" />
+<Caption>Running the Redwood app locally.</Caption>
+
+## Step 2: Retrieving Environment Variable Values
 
 When [importing the project](/docs/git-integrations) into Vercel, you will be provided with the option to specify [environment variables](/docs/build-step#environment-variables). Make sure to add a `DATABASE_URL` environment variable with the connection string used.
 
