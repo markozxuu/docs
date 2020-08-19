@@ -20,8 +20,9 @@ export async function getStaticProps({ params: { slug } }) {
           title
           slug
           description
-          _updatedAt
+          _firstPublishedAt
           _publishedAt
+          _updatedAt
           relatedContents {
             ... on KnowledgeBaseRecord {
               title
@@ -134,49 +135,11 @@ export async function getStaticProps({ params: { slug } }) {
   })
   const post = (await res.json()).data.knowledgeBase
 
-  return { props: { post }, revalidate: 5 }
+  return { props: { post }, revalidate: 60 }
 }
 
 export async function getStaticPaths() {
-  const res = await fetch(`${DATOCMS_KNOWLEDGE_API_ENDPOINT}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-      Authorization: `Bearer ${DATOCMS_KNOWLEDGE_API_KEY}`,
-    },
-    body: JSON.stringify({
-      query: `{
-        allKnowledgeBases(first: 100, orderBy: _publishedAt_DESC) {
-          title
-          slug
-          description
-          authors {
-            slug
-            isMemberOfVercelTeam
-            profilePicture {
-              url
-            }
-          }
-          _publishedAt
-          _updatedAt
-        }
-      }`,
-    }),
-  })
-  const posts = (await res.json()).data.allKnowledgeBases
-
-  //console.log('posts', posts);
-
-  // Get the paths we want to pre-render based on posts
-  const paths = posts.map((post) => `/knowledge/${post.slug}`)
-
-  // TODO: add support for previews
-
-  // We'll pre-render only these paths at build time.
-  // { fallback: false } means other routes should 404.
-
-  return { paths, fallback: true }
+  return { paths: [], fallback: 'unstable_blocking' }
 }
 
 export const config = {
