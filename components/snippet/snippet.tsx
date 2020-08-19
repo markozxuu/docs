@@ -81,7 +81,7 @@ const Snippet: React.FC<SnippetProps> = memo(
         {/* Dynamic Styles */}
         <style jsx>{`
           .snippet-wrapper {
-            width: ${width ? width : 'fit-content'};
+            width: ${width ? width : '100%'};
           }
 
           .copy {
