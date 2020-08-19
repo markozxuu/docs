@@ -56,7 +56,7 @@ export default function DeployButtonGenerator() {
   const [repoName, setRepoName] = useState('')
   const [repoNameError, setRepoNameError] = useState('')
   const isAmp = useAmp()
-  const importUrl = 'https://vercel.com/import/git'
+  const importUrl = 'https://vercel.com/new/git/external'
 
   const onRepositoryChange = (event) => {
     const newRepo = event.target.value
@@ -238,7 +238,7 @@ export default function DeployButtonGenerator() {
     }
   }, [redirectUrl, developerId])
 
-  const completeUrl = `${importUrl}?s=${encodeURIComponent(
+  const completeUrl = `${importUrl}?repository-url=${encodeURIComponent(
     repository || defaultRepo
   )}${hasEnv ? `&env=${envValues}` : ''}${
     hasEnv && envDescription
@@ -260,7 +260,8 @@ export default function DeployButtonGenerator() {
 
   const completeHTMLUrl = (
     <span>
-      {importUrl}?<b>s={encodeURIComponent(repository || defaultRepo)}</b>
+      {importUrl}?
+      <b>repository-url={encodeURIComponent(repository || defaultRepo)}</b>
       {hasEnv ? (
         <>
           &amp;<b>env={envValues}</b>

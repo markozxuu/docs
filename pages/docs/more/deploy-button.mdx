@@ -18,10 +18,8 @@ export const meta = {
   title: 'Deploy Button',
   description: `Learn how to integrate with Vercel's flow for deploying Git repositories.`,
   editUrl: 'pages/docs/more/deploy-button.mdx',
-  lastEdited: '2020-08-11T20:50:52.000Z',
-  image: `https://vercel.com${
-    process.env.ASSETS
-  }/docs/more/deploy-button/deploy-button.png`
+  lastEdited: '2020-08-19T08:38:19.000Z',
+  image: `https://vercel.com${process.env.ASSETS}/docs/more/deploy-button/deploy-button.png`,
 }
 
 Deploy public Git projects with the Deploy Button, providing an easy-to-use flow to set up new projects with <OrgName /> and GitHub, GitLab, or Bitbucket.
@@ -56,7 +54,7 @@ The <OrgName /> Import Flow allows users to deploy a Git repository, create a pr
 
 With the <OrgName /> Import Flow, you can add various URL query parameters to control the experience a user will have, depending on the requirements of your project.
 
-The base of the Deploy Button URL is the <OrgName /> Git Import Flow, found at <https://vercel.com/import/git>.
+The base of the Deploy Button URL is the <OrgName /> Git Import Flow, found at <https://vercel.com/new/git/external>.
 
 <Note>
   The following is a reference of what each parameter achieves within a Deploy
@@ -67,7 +65,7 @@ The base of the Deploy Button URL is the <OrgName /> Git Import Flow, found at <
 
 ### Repository URL
 
-**Parameter**: `s`<br />
+**Parameter**: `repository-url`<br />
 **Value**: The source Git repository URL.<br />
 **Type**: String
 
@@ -76,19 +74,19 @@ The Repository URL parameter allows you to define a Git repository URL, optional
 <Snippet
   dark
   prompt={false}
-  copyText="https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world"
+  copyText="https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world"
   text={
     <span style={{ color: 'var(--accents-3)' }}>
-      https://vercel.com/import/git?
+      https://vercel.com/new/git/external?
       <b style={{ color: 'var(--geist-background)' }}>
-        s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world
+        repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world
       </b>
     </span>
   }
 />
 <Caption>
-  An example Deploy Button source URL using the <InlineCode>s</InlineCode>{' '}
-  Repository URL parameter.
+  An example Deploy Button source URL using the{' '}
+  <InlineCode>repository-url</InlineCode> Repository URL parameter.
 </Caption>
 
 <Note>
@@ -108,10 +106,10 @@ The Required Environment Variables parameter allows you to require users to fill
 <Snippet
   dark
   prompt={false}
-  copyText="https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&env=PUBLIC_API_KEY,API_SECRET_KEY"
+  copyText="https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&env=PUBLIC_API_KEY,API_SECRET_KEY"
   text={
     <span style={{ color: 'var(--accents-3)' }}>
-      https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;
+      https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;
       <b style={{ color: 'var(--geist-background)' }}>env=PUBLIC_API_KEY,API_SECRET_KEY</b>
     </span>
   }
@@ -154,10 +152,10 @@ The Environment Variables Description parameter allows you to define a URL encod
 <Snippet
   dark
   prompt={false}
-  copyText="https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&env=PUBLIC_API_KEY&envDescription=Enter%20your%20public%20API%20Key."
+  copyText="https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&env=PUBLIC_API_KEY&envDescription=Enter%20your%20public%20API%20Key."
   text={
     <span style={{ color: 'var(--accents-3)' }}>
-      https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;env=PUBLIC_API_KEY,API_SECRET_KEY&amp;
+      https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;env=PUBLIC_API_KEY,API_SECRET_KEY&amp;
       <b style={{ color: 'var(--geist-background)' }}>envDescription=Enter%20your%20public%20API%20Key.</b>
     </span>
   }
@@ -196,10 +194,10 @@ The Environment Variable Link parameter allows you to attach a link to external 
 <Snippet
   dark
   prompt={false}
-  copyText="https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&env=PUBLIC_API_KEY&envDescription=Enter%20your%20public%20API%20Key.&envLink=https%3A%2F%2Fvercel.com%2Fdocs"
+  copyText="https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&env=PUBLIC_API_KEY&envDescription=Enter%20your%20public%20API%20Key.&envLink=https%3A%2F%2Fvercel.com%2Fdocs"
   text={
     <span style={{ color: 'var(--accents-3)' }}>
-      https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;env=PUBLIC_API_KEY,API_SECRET_KEY&amp;envDescription=Enter%20your%20public%20API%20Key.&amp;
+      https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;env=PUBLIC_API_KEY,API_SECRET_KEY&amp;envDescription=Enter%20your%20public%20API%20Key.&amp;
       <b style={{ color: 'var(--geist-background)' }}>envLink=https%3A%2F%2Fvercel.com%2Fdocs</b>
     </span>
   }
@@ -238,10 +236,10 @@ This parameter is helpful if you are sending a user from an application, to depl
 <Snippet
   dark
   prompt={false}
-  copyText="https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&redirect-url=my-headless-application.com"
+  copyText="https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&redirect-url=my-headless-application.com"
   text={
     <span style={{ color: 'var(--accents-3)' }}>
-      https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;
+      https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;
       <b style={{ color: 'var(--geist-background)' }}>redirect-url=my-headless-application.com</b>
     </span>
   }
@@ -299,10 +297,10 @@ You can find the Developer ID listed as "Client ID" in your [Integrations Develo
 <Snippet
   dark
   prompt={false}
-  copyText="https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&redirect-url=https%3A%2F%2Fmy-headless-application.com&developer-id=oac_7rUTiCMow23Gyfao9RQQ3Es2"
+  copyText="https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&redirect-url=https%3A%2F%2Fmy-headless-application.com&developer-id=oac_7rUTiCMow23Gyfao9RQQ3Es2"
   text={
     <span style={{ color: 'var(--accents-3)' }}>
-      https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;redirect-url=https%3A%2F%2Fmy-headless-application.com&amp;
+      https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;redirect-url=https%3A%2F%2Fmy-headless-application.com&amp;
       <b style={{ color: 'var(--geist-background)' }}>developer-id=oac_7rUTiCMow23Gyfao9RQQ3Es2</b>
     </span>
   }
@@ -336,10 +334,10 @@ When redirected back to your application upon a successful deployment for the us
 <Snippet
   dark
   prompt={false}
-  copyText="https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&redirect-url=https%3A%2F%2Fmy-headless-application.com&production-deploy-hook=MyHeadlessProject"
+  copyText="https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&redirect-url=https%3A%2F%2Fmy-headless-application.com&production-deploy-hook=MyHeadlessProject"
   text={
     <span style={{ color: 'var(--accents-3)' }}>
-      https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;redirect-url=https%3A%2F%2Fmy-headless-application.com&amp;
+      https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;redirect-url=https%3A%2F%2Fmy-headless-application.com&amp;
       <b style={{ color: 'var(--geist-background)' }}>production-deploy-hook=MyHeadlessProject</b>
     </span>
   }
@@ -370,10 +368,10 @@ This parameter is useful for cases where already know what the user would like t
 <Snippet
   dark
   prompt={false}
-  copyText="https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&project-name=my-awesome-project"
+  copyText="https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&project-name=my-awesome-project"
   text={
     <span style={{ color: 'var(--accents-3)' }}>
-      https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;
+      https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;
       <b style={{ color: 'var(--geist-background)' }}>project-name=my-awesome-project</b>
     </span>
   }
@@ -396,10 +394,10 @@ Similar to the [Project Name](#project-name) parameter, this parameter is useful
 <Snippet
   dark
   prompt={false}
-  copyText="https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&repository-name=my-awesome-project"
+  copyText="https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&repository-name=my-awesome-project"
   text={
     <span style={{ color: 'var(--accents-3)' }}>
-      https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;
+      https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;
       <b style={{ color: 'var(--geist-background)' }}>repository-name=my-awesome-project</b>
     </span>
   }
@@ -409,8 +407,191 @@ Similar to the [Project Name](#project-name) parameter, this parameter is useful
   <InlineCode>repository-name</InlineCode> parameter.
 </Caption>
 
+### Demo Title
+
+**Parameter**: `demo-title`<br />
+**Value**: Title of a Demo website.<br />
+**Type**: String
+
+The Demo Title parameter allows you to define a title of a demo website, which is displayed in the Vercel Git Import Flow page.
+
+It's part of the Demo card displayed below which shows the user how their first deployment will look like.
+
+<Image
+  src={`${process.env.ASSETS}/docs/more/deploy-button/new-git-external.png`}
+  width={1792 / 2}
+  height={984 / 2}
+  shadow
+/>
+<Caption>
+  In this example, <i>APM Story</i> represents the Demo Title.
+</Caption>
+
+The title is from a website which has already been deployed using the same Git repository provided using [Repository URL](#repository-url).
+
+<Note>
+  The Demo card is displayed only when all <InlineCode>demo-*</InlineCode>{' '}
+  parameters are provided.
+</Note>
+
+<Spacer />
+
+<Snippet
+  dark
+  prompt={false}
+  copyText="https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&demo-title=APM%20Story"
+  text={
+    <span style={{ color: 'var(--accents-3)' }}>
+      https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;
+      <b style={{ color: 'var(--geist-background)' }}>demo-title=APM%20Story</b>
+    </span>
+  }
+/>
+<Caption>
+  An example Deploy Button source URL using the{' '}
+  <InlineCode>demo-title</InlineCode> parameter.
+</Caption>
+
+### Demo Description
+
+**Parameter**: `demo-description`<br />
+**Value**: Description of a Demo website.<br />
+**Type**: String
+
+The Demo Description parameter allows you to define a description of a demo website, which is displayed in the Vercel Git Import Flow page.
+
+It's part of the Demo card displayed below which shows the user how their first deployment will look like.
+
+<Image
+  src={`${process.env.ASSETS}/docs/more/deploy-button/new-git-external.png`}
+  width={1792 / 2}
+  height={984 / 2}
+  shadow
+/>
+<Caption>
+  In this example, the description below <i>APM Story</i> represents the Demo
+  Description.
+</Caption>
+
+The description should explain users what they are going to deploy.
+
+<Note>
+  The Demo card is displayed only when all <InlineCode>demo-*</InlineCode>{' '}
+  parameters are provided.
+</Note>
+
+<Spacer />
+
+<Snippet
+  dark
+  prompt={false}
+  copyText="https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&demo-description=A%20statically%20generated%20blog%20example%20using%20Next.js%20%and%20DatoCMS"
+  text={
+    <span style={{ color: 'var(--accents-3)' }}>
+      https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;
+      <b style={{ color: 'var(--geist-background)' }}>demo-description=A%20statically%20generated%20blog%20example%20using%20Next.js%20%and%20DatoCMS</b>
+    </span>
+  }
+/>
+<Caption>
+  An example Deploy Button source URL using the{' '}
+  <InlineCode>demo-description</InlineCode> parameter.
+</Caption>
+
+### Demo URL
+
+**Parameter**: `demo-url`<br />
+**Value**: URL of a Demo website.<br />
+**Type**: String
+
+The Demo URL parameter allows you to define a URL of a demo website, which is displayed in the Vercel Git Import Flow page.
+
+It's part of the Demo card displayed below which shows the user how their first deployment will look like.
+
+<Image
+  src={`${process.env.ASSETS}/docs/more/deploy-button/new-git-external.png`}
+  width={1792 / 2}
+  height={984 / 2}
+  shadow
+/>
+<Caption>
+  In this example, clicking on <i>APM Story</i> takes the user to the provided{' '}
+  <InlineCode>demo-url</InlineCode>.
+</Caption>
+
+The URL should be of an example website deployed using the same [Repository URL](#repository-url).
+
+<Note>
+  The Demo card is displayed only when all <InlineCode>demo-*</InlineCode>{' '}
+  parameters are provided.
+</Note>
+
+<Spacer />
+
+<Snippet
+  dark
+  prompt={false}
+  copyText="https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&demo-url=https%3A%2F%2Fnextjs.org"
+  text={
+    <span style={{ color: 'var(--accents-3)' }}>
+      https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;
+      <b style={{ color: 'var(--geist-background)' }}>demo-url=https%3A%2F%2Fnextjs.org</b>
+    </span>
+  }
+/>
+<Caption>
+  An example Deploy Button source URL using the{' '}
+  <InlineCode>demo-url</InlineCode> parameter.
+</Caption>
+
+### Demo Image
+
+**Parameter**: `demo-image`<br />
+**Value**: External Image of a Demo website.<br />
+**Type**: String
+
+The Demo Image parameter allows you to define a URL of an external image of a demo website, which is displayed in the Vercel Git Import Flow page.
+
+It's part of the Demo card displayed below which shows the user how their first deployment will look like.
+
+<Image
+  src={`${process.env.ASSETS}/docs/more/deploy-button/new-git-external.png`}
+  width={1792 / 2}
+  height={984 / 2}
+  shadow
+/>
+<Caption>
+  In this example, a screenshot of an example website is displayed, which is
+  provided using <InlineCode>demo-image</InlineCode>.
+</Caption>
+
+In order for the image to be properly displayed in the Demo card, it needs to be provided with a width of <InlineCode>414px</InlineCode> and a height of <InlineCode>248px</InlineCode>.
+
+<Note>
+  The Demo card is displayed only when all <InlineCode>demo-*</InlineCode>{' '}
+  parameters are provided.
+</Note>
+
+<Spacer />
+
+<Snippet
+  dark
+  prompt={false}
+  copyText="https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&demo-image=https%3A%2F%2Fexample.com%2Fimage.png"
+  text={
+    <span style={{ color: 'var(--accents-3)' }}>
+      https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world&amp;
+      <b style={{ color: 'var(--geist-background)' }}>demo-image=https%3A%2F%2Fexample.com%2Fimage.png</b>
+    </span>
+  }
+/>
+<Caption>
+  An example Deploy Button source URL using the{' '}
+  <InlineCode>demo-image</InlineCode> parameter.
+</Caption>
+
 export default ({ children }) => <Doc meta={meta}>{children}</Doc>
 
 export const config = {
-  amp: 'hybrid'
+  amp: 'hybrid',
 }
