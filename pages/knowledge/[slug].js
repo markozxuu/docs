@@ -1,19 +1,18 @@
 import Layout from '~/components/layout/knowledge'
 import {
-  DATOCMS_KNOWLEDGE_API_KEY, DATOCMS_KNOWLEDGE_API_ENDPOINT } from '~/lib/api/get-datocms-credentials'
+  DATOCMS_KNOWLEDGE_API_KEY,
+  DATOCMS_KNOWLEDGE_API_ENDPOINT,
+} from '~/lib/api/get-datocms-credentials'
 
+export default ({ post }) => <Layout post={post} />
 
-export default ({ post }) => <Layout post={ post } />
-
-
-export async function getStaticProps({ params: {slug} } ) {
-
+export async function getStaticProps({ params: { slug } }) {
   const res = await fetch(`${DATOCMS_KNOWLEDGE_API_ENDPOINT}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': `Bearer ${DATOCMS_KNOWLEDGE_API_KEY}`,
+      Accept: 'application/json',
+      Authorization: `Bearer ${DATOCMS_KNOWLEDGE_API_KEY}`,
     },
     body: JSON.stringify({
       query: `{
@@ -130,22 +129,21 @@ export async function getStaticProps({ params: {slug} } ) {
             description
           }
         }
-      }`
+      }`,
     }),
   })
   const post = (await res.json()).data.knowledgeBase
 
-  return { props: { post } }
+  return { props: { post }, revalidate: 5 }
 }
-
 
 export async function getStaticPaths() {
   const res = await fetch(`${DATOCMS_KNOWLEDGE_API_ENDPOINT}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': `Bearer ${DATOCMS_KNOWLEDGE_API_KEY}`,
+      Accept: 'application/json',
+      Authorization: `Bearer ${DATOCMS_KNOWLEDGE_API_KEY}`,
     },
     body: JSON.stringify({
       query: `{
@@ -163,7 +161,7 @@ export async function getStaticPaths() {
           _publishedAt
           _updatedAt
         }
-      }`
+      }`,
     }),
   })
   const posts = (await res.json()).data.allKnowledgeBases
@@ -178,10 +176,9 @@ export async function getStaticPaths() {
   // We'll pre-render only these paths at build time.
   // { fallback: false } means other routes should 404.
 
-  return { paths, fallback: false }
+  return { paths, fallback: true }
 }
 
-
 export const config = {
-  amp: 'hybrid'
+  amp: 'hybrid',
 }
