@@ -10,7 +10,7 @@ const Code = React.forwardRef(({ className, children }, ref = {}) => {
       <code
         ref={ref}
         className={classNames(className, {
-          dark: darkBg
+          dark: darkBg,
         })}
       >
         {children}
@@ -103,7 +103,7 @@ const Code = React.forwardRef(({ className, children }, ref = {}) => {
           content: '$ ';
           user-select: none;
           white-space: pre;
-          color: #CCC;
+          color: #fff;
           display: inline-block;
           margin-left: -10px;
           

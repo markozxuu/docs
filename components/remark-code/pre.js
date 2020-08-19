@@ -6,7 +6,7 @@ const Pre = ({ className, children }) => (
         pre {
           border: 1px solid #eaeaea;
           border-radius: var(--geist-radius);
-          padding: 20px;
+          padding: 12px 20px;
           margin: 24px 0 40px;
           white-space: pre;
           overflow: auto;
