@@ -248,9 +248,9 @@
     "name": "Redwood",
     "type": "app",
     "editUrl": "pages/guides/deploying-redwood-with-vercel.mdx",
-    "example": "https://github.com/vercel/vercel/tree/master/examples/redwoodjs",
-    "demo": "https://redwoodjs-example.vercel.app",
-    "lastEdited": "2020-08-19T08:14:07.000Z"
+    "example": "https://github.com/redwoodjs/example-blog/tree/vercel-deploy",
+    "demo": "https://redwoodjs-example-blog.vercel.app/",
+    "lastEdited": "2020-08-19T08:22:39.000Z"
   },
   {
     "title": "Deploy Next.js and Userbase with Vercel",
