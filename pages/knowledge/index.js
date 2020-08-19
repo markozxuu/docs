@@ -10,7 +10,7 @@ import Footer from '~/components/footer'
 
 import {
   DATOCMS_KNOWLEDGE_API_KEY,
-  DATOCMS_KNOWLEDGE_API_ENDPOINT
+  DATOCMS_KNOWLEDGE_API_ENDPOINT,
 } from '~/lib/api/get-datocms-credentials'
 
 const Knowledge = ({ posts }) => (
@@ -224,7 +224,7 @@ export async function getStaticProps() {
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      Authorization: `Bearer ${DATOCMS_KNOWLEDGE_API_KEY}`
+      Authorization: `Bearer ${DATOCMS_KNOWLEDGE_API_KEY}`,
     },
     body: JSON.stringify({
       query: `{
@@ -242,19 +242,20 @@ export async function getStaticProps() {
           _publishedAt
           _updatedAt
         }
-      }`
-    })
+      }`,
+    }),
   })
 
   const posts = (await res.json()).data.allKnowledgeBases
 
   return {
     props: {
-      posts
-    }
+      posts,
+    },
+    revalidate: 5,
   }
 }
 
 export const config = {
-  amp: 'hybrid'
+  amp: 'hybrid',
 }
