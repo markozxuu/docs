@@ -13,7 +13,7 @@ let title
 
 const start = debounce(NProgress.start, 200)
 RouterEvents.on('routeChangeStart', start)
-RouterEvents.on('routeChangeComplete', url => {
+RouterEvents.on('routeChangeComplete', (url) => {
   start.cancel()
   NProgress.done()
 
@@ -28,11 +28,11 @@ if (global.document) {
   const info = [
     ...(process.env.NOW_GITHUB_COMMIT_SHA
       ? [
-          `Commit: https://github.com/vercel/docs/commit/${process.env.NOW_GITHUB_COMMIT_SHA}`
+          `Commit: https://github.com/vercel/docs/commit/${process.env.NOW_GITHUB_COMMIT_SHA}`,
         ]
       : []),
     `Check out our code here: https://vercel.com/oss`,
-    `Have a great day! 📣🐢`
+    `Have a great day! 📣🐢`,
   ]
 
   for (const message of info) {
@@ -45,7 +45,7 @@ function updateTitle(newTitle) {
   title = newTitle
 }
 
-const HeadTags = props => {
+const HeadTags = (props) => {
   const isAmp = useAmp()
   return isAmp ? null : (
     <>
@@ -87,7 +87,7 @@ class Head extends React.PureComponent {
           />
           <title>{titlePrefix + this.props.title + titleSuffix}</title>
           <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:site" content="@zeithq" />
+          <meta name="twitter:site" content="@vercel" />
           <meta property="og:site_name" content={`${ORG_NAME} Documentation`} />
           <meta property="og:type" content="website" />
           <meta
@@ -130,7 +130,7 @@ class Head extends React.PureComponent {
             ? [
                 <meta property="og:type" content="video" key="0" />,
                 <meta property="og:video" content={this.props.video} key="1" />,
-                <meta property="og:video:type" content="video/mp4" key="2" />
+                <meta property="og:video:type" content="video/mp4" key="2" />,
               ]
             : null}
 
@@ -213,6 +213,8 @@ class Head extends React.PureComponent {
           />
           <meta name="theme-color" content="#000" />
 
+          {this.props.noIndex && <meta name="robots" content="noindex" />}
+
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
@@ -245,23 +247,23 @@ class Head extends React.PureComponent {
                       : null,
                     author: {
                       '@type': 'Person',
-                      name: ORG_NAME
+                      name: ORG_NAME,
                     },
                     publisher: {
                       '@type': 'Organization',
                       logo: {
                         '@type': 'ImageObject',
-                        url: `${process.env.IMAGE_ASSETS_URL}/favicon/favicon-96x96.png`
+                        url: `${process.env.IMAGE_ASSETS_URL}/favicon/favicon-96x96.png`,
                       },
-                      name: ORG_NAME
+                      name: ORG_NAME,
                     },
-                    '@context': 'http://schema.org'
+                    '@context': 'http://schema.org',
                   },
                   this.props.description
                     ? { description: this.props.description }
                     : undefined
                 )
-              )
+              ),
             }}
           />
 
@@ -272,8 +274,13 @@ class Head extends React.PureComponent {
   }
 }
 
-Head.contextTypes = {
-  darkBg: PropTypes.bool
+Head.propTypes = {
+  darkBg: PropTypes.bool,
+  noIndex: PropTypes.bool,
+}
+
+Head.defaultProps = {
+  noIndex: false,
 }
 
 export default withRouter(Head)

@@ -20,8 +20,9 @@ export async function getStaticProps({ params: { slug } }) {
           title
           slug
           description
-          _updatedAt
+          _firstPublishedAt
           _publishedAt
+          _updatedAt
           relatedContents {
             ... on KnowledgeBaseRecord {
               title
@@ -134,7 +135,7 @@ export async function getStaticProps({ params: { slug } }) {
   })
   const post = (await res.json()).data.knowledgeBase
 
-  return { props: { post }, revalidate: 5 }
+  return { props: { post }, revalidate: 60 }
 }
 
 export async function getStaticPaths() {

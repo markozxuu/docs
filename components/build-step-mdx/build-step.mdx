@@ -357,6 +357,11 @@ To install private npm modules, define `NPM_TOKEN` as a [build environment varia
 
 Alternatively, define `NPM_RC` as a [build environment variable](/docs/configuration#project/build-env) with the contents of `~/.npmrc`.
 
+### Git Submodules
+
+Deploying Git submodules with the [Git Integration](/docs/git-integrations) is supported as long as the submodule is publicly accessible via the HTTP protocol.
+Git submodules that are private or requested over SSH will fail during the Build step.
+
 ### Prevent Installing Development Dependencies
 
 In some rare cases, you may wish to skip installing `devDependencies` defined in your `package.json` file and only install `dependencies`.

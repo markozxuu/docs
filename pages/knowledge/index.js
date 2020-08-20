@@ -228,10 +228,15 @@ export async function getStaticProps() {
     },
     body: JSON.stringify({
       query: `{
-        allKnowledgeBases(first: 100, orderBy: _publishedAt_DESC) {
+        allKnowledgeBases(first: 100, orderBy: _firstPublishedAt_DESC) {
           title
           slug
           description
+          
+          _firstPublishedAt
+          _publishedAt
+          _updatedAt
+
           authors {
             slug
             isMemberOfVercelTeam
@@ -252,7 +257,7 @@ export async function getStaticProps() {
     props: {
       posts,
     },
-    revalidate: 5,
+    revalidate: 60,
   }
 }
 
