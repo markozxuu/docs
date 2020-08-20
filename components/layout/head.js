@@ -87,7 +87,7 @@ class Head extends React.PureComponent {
           />
           <title>{titlePrefix + this.props.title + titleSuffix}</title>
           <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:site" content="@zeithq" />
+          <meta name="twitter:site" content="@vercel" />
           <meta property="og:site_name" content={`${ORG_NAME} Documentation`} />
           <meta property="og:type" content="website" />
           <meta
