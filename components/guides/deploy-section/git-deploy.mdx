@@ -19,19 +19,25 @@ Import the project into <ProductName /> using your Git Integration of choice:
   <IconCard
     label="GitHub"
     icon={<GitHubIcon />}
-    href={`/import/git${props.env ? '?env=' + props.env.join(',') : ''}`}
+    href={`https://vercel.com/import/git${
+      props.env ? '?env=' + props.env.join(',') : ''
+    }`}
     plus
   />
   <IconCard
     label="GitLab"
     icon={<GitLabIcon />}
-    href={`/import/git${props.env ? '?env=' + props.env.join(',') : ''}`}
+    href={`https://vercel.com/import/git${
+      props.env ? '?env=' + props.env.join(',') : ''
+    }`}
     plus
   />
   <IconCard
     label="Bitbucket"
     icon={<BitbucketIcon />}
-    href={`/import/git${props.env ? '?env=' + props.env.join(',') : ''}`}
+    href={`https://vercel.com/import/git${
+      props.env ? '?env=' + props.env.join(',') : ''
+    }`}
     plus
   />
 </List>
