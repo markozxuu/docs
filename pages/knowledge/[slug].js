@@ -135,7 +135,7 @@ export async function getStaticProps({ params: { slug } }) {
   })
   const post = (await res.json()).data.knowledgeBase
 
-  return { props: { post }, revalidate: 60 }
+  return { props: { post }, revalidate: 5 }
 }
 
 export async function getStaticPaths() {
