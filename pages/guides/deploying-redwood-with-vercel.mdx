@@ -1,0 +1,110 @@
+import Guide from '~/components/layout/guide'
+import Snippet from '~/components/snippet'
+import Caption from '~/components/text/caption'
+import Link from '~/components/text/link'
+import Note from '~/components/text/note'
+import { InlineCode } from '~/components/text/code'
+import DeploySection from '~/components/guides/deploy-section'
+import { PRODUCT_NAME } from '~/lib/constants'
+import NameWrapper from '~/components/name/name-wrapper'
+
+export const meta = {
+  title: `Deploy RedwoodJS with ${PRODUCT_NAME}`,
+  description: `Create a Redwood blog and deploy it live with ${PRODUCT_NAME}.`,
+  published: '2020-08-21T12:00:00.860Z',
+  authors: ['mcsdev'],
+  url: '/guides/deploying-redwood-with-vercel',
+  image: `https://og-image.now.sh/**Deploy%20RedwoodJS%20Apps**%20%3Cbr%2F%3E%20with%20Vercel.png?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fvercel-triangle-black.svg&images=https%3A%2F%2Fd33wubrfki0l68.cloudfront.net%2F492ed629970792d32ac857da0166a7d2308bad99%2F428b6%2Fimages%2Fdiecut.svg&widths=300&widths=350&heights=undefined&heights=350`,
+  name: 'Redwood',
+  type: 'app',
+  env: ['DATABASE_URL'],
+  envDescription: ['Your PostgreSQL connection string.'],
+  envLink: ['https://redwoodjs.com/docs/deploy#3-prisma-and-database'],
+  editUrl: 'pages/guides/deploying-redwood-with-vercel.mdx',
+  example: 'https://github.com/redwoodjs/example-blog/tree/vercel-deploy',
+  demo: 'https://redwoodjs-example-blog.vercel.app/',
+  lastEdited: '2020-08-21T12:36:40.000Z',
+}
+
+[RedwoodJS](https://redwoodjs.com/) is an opinionated, full-stack, serverless web application framework that will allow you to build and deploy JAMstack applications with ease.
+
+In this guide, you will discover how to create and deploy a Redwood blog to [Vercel](/), backed by a [PostgreSQL](https://www.postgresql.org/) database connection.
+
+## Step 1: Creating Your Redwood App
+
+Set up a new Redwood app by cloning the project template and moving into the project directory:
+
+<Snippet
+  dark
+  text="git clone -b vercel-deploy https://github.com/redwoodjs/example-blog.git"
+/>
+<Caption>Initializing a Redwood app locally.</Caption>
+
+Move into the project directory and remove the origin remote:
+
+<Snippet dark text="cd example-blog && git remote rm origin" />
+<Caption>
+  Moving into the project directory and removing the origin remote.
+</Caption>
+
+Install the project dependencies with [Yarn](https://yarnpkg.com/):
+
+<Snippet dark text="yarn install" />
+<Caption>Installing the project dependencies with Yarn.</Caption>
+
+Create a local SQLite database and seed it with the provided blog posts:
+
+<Snippet dark text="yarn redwood db up && yarn redwood db seed" />
+<Caption>Creating and seeding a local SQLite database.</Caption>
+
+<Note>
+  When importing the project to Vercel, you will need to add an environment
+  variable with the name <InlineCode>DATABASE_URL</InlineCode>, this will hold
+  the value of a supplied PostgreSQL connection string. If needed, you can{' '}
+  <Link href="https://redwoodjs.com/tutorial/deployment#the-database">
+    quickly spin up a free database on Heroku
+  </Link>
+  .
+</Note>
+
+Use the provided Redwood script to set Vercel as the deployment target:
+
+<Snippet dark text="yarn redwood generate deploy vercel" />
+<Caption>Setting the the project deployment target to Vercel.</Caption>
+
+Your Redwood app is now ready for local development with the following command:
+
+<Snippet dark text="yarn redwood dev" />
+<Caption>Running the Redwood app locally.</Caption>
+
+## Step 2: Seed Your PostgreSQL Database
+
+In the `.env.defaults` file, change your `DATABASE_URL` environment variable to your PostgreSQL connection string.
+
+Then, as in [step 1](#step-1:-creating-your-redwood-app), run the following command to seed your PostgreSQL database:
+
+<Snippet dark text="yarn redwood db up && yarn redwood db seed" />
+<Caption>Seeding your PostgreSQL database with blog posts.</Caption>
+
+After this command has been executed, change your `DATABASE_URL` back to `file:/dev.db` so that it uses the SQLite database during local development.
+
+By seeding your PostgreSQL database, you will be providing your database with content to display for when you deploy your Redwood blog in [step 3](#step-3:-deploy-your-app-with-vercel).
+
+## Step 3: Deploy Your App with <NameWrapper name={PRODUCT_NAME} />
+
+<DeploySection meta={meta} />
+
+## Bonus: Learn More about Redwood
+
+After deploying your Redwood app, learn more about how it works and dive deeper with the resources below:
+
+- [Get started with Redwood via Tutorial](https://redwoodjs.com/tutorial/welcome-to-redwood).
+- [Redwood Deployment Docs](https://redwoodjs.com/docs/deploy).
+- [Need help? Try the Redwood Community Forums](https://community.redwoodjs.com).
+- [Need stickers? Grab yourself some new ones, Redwood style](https://redwoodjs.com/stickers).
+
+export default ({ children }) => <Guide meta={meta}>{children}</Guide>
+
+export const config = {
+  amp: 'hybrid',
+}
