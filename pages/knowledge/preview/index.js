@@ -27,11 +27,11 @@ const Knowledge = ({ articles, previewArticles }) => (
         {({ user, userLoaded }) => (
           <UseTeamInfo
             user={user}
-            render={({ teams }) => {
+            render={({ teams, teamsLoaded }) => {
               const isInVercelTeam =
                 teams.findIndex((team) => team.teamSlug === 'vercel') !== -1
 
-              return !userLoaded ? (
+              return !userLoaded || (user && !teamsLoaded) ? (
                 <div className="message">Loading...</div>
               ) : !user ? (
                 <div className="message">
