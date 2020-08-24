@@ -10,7 +10,7 @@ export const meta = {
   title: 'Limits',
   description: `A list of limits and limitations that apply on the ${PRODUCT_NAME} platform.`,
   editUrl: 'pages/docs/platform/limits.mdx',
-  lastEdited: '2020-08-04T21:21:17.000Z',
+  lastEdited: '2020-08-24T07:53:10.000Z',
 }
 
 This page outlines all relevant limits and limitations present when using the <ProductName /> platform.
@@ -102,7 +102,7 @@ As a result of this, we recommend using a third-party service to enable email fu
 
 ## Serverless Function Size
 
-The maximum size for a [Serverless Function](/docs/v2/serverless-functions/introduction) is **50 MB** and the maximum unzipped size is **250 MB**.
+The maximum size for a [Serverless Function](/docs/v2/serverless-functions/introduction) is **50 MB** and the maximum unzipped size is **250 MB** including layers which are automatically used depending on [Runtimes](/docs/runtimes#official-runtimes).
 These limits are [enforced by AWS](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html) to ensure you can't deploy Serverless Functions that take a long time to boot.
 
 You can configure [functions](/docs/configuration#project/functions) with `includeFiles` and `excludeFiles` which may affect the function size, however the limits cannot be configured.

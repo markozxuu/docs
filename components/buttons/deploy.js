@@ -20,7 +20,7 @@ export default function DeployButton({ env, envDescription, envLink, url }) {
   const deployUrl = url.includes(VERCEL_EXAMPLES_URL)
     ? `https://vercel.com/import/${url.split(VERCEL_EXAMPLES_URL)[1]}`
     : url.startsWith('http://') || url.startsWith('https://')
-    ? `https://vercel.com/import/git?s=${url}${formatEnv()}`
+    ? `https://vercel.com/import/git?c=1&s=${url}${formatEnv()}`
     : `https://vercel.com/import/${url}`
 
   return (
