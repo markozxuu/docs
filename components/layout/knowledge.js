@@ -106,7 +106,7 @@ class withStandard extends React.PureComponent {
         ></Head>
         {isPreview && (
           <header className="preview-heading">
-            <Wrapper width="900">
+            <Wrapper>
               <div>
                 You are currently viewing the{' '}
                 <span
