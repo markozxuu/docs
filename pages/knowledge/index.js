@@ -8,12 +8,9 @@ import Button from '~/components/buttons'
 import { PRODUCT_NAME } from '~/lib/constants'
 import Footer from '~/components/footer'
 
-import {
-  DATOCMS_KNOWLEDGE_API_KEY,
-  DATOCMS_KNOWLEDGE_API_ENDPOINT,
-} from '~/lib/api/get-datocms-credentials'
+import { getAllKnowledgeArticles } from '~/lib/data/datocms'
 
-const Knowledge = ({ posts }) => (
+const Knowledge = ({ articles }) => (
   <>
     <Head
       titlePrefix=""
@@ -31,7 +28,7 @@ const Knowledge = ({ posts }) => (
           </P>
 
           <div className="actions">
-            <span className="caption">Sorted by Newest</span>
+            <span className="caption">Sorted by Published Date</span>
             <Link
               href="https://github.com/vercel/docs/issues/new?labels=Section%3A+Knowledge"
               underlineOnHover={false}
@@ -46,20 +43,28 @@ const Knowledge = ({ posts }) => (
 
       <Wrapper>
         <div className="knowledge-list">
-          {posts.map((post, i) => (
+          {articles.map((article, i) => (
             <Link
               href="/knowledge/[slug]"
-              as={`/knowledge/${post.slug}`}
-              key={`${post.slug}.${i}`}
+              as={`/knowledge/${article.slug}`}
+              key={`${article.slug}.${i}`}
             >
-              <article className="post">
+              <article className="article">
                 <div className="titles">
-                  <H3>{post.title}</H3>
-                  <P style={{ color: '#444' }}>{post.description}</P>
+                  <H3>{article.title}</H3>
+                  <P style={{ color: '#444' }}>{article.description}</P>
                 </div>
                 <div className="meta">
                   <span className="date">
-                    Published at {formatDate(post._publishedAt, 'MMMM Do YYYY')}
+                    {article._firstPublishedAt === article._publishedAt
+                      ? `Published at ${formatDate(
+                          article._firstPublishedAt,
+                          'MMMM Do YYYY'
+                        )}`
+                      : `Revised at ${formatDate(
+                          article._publishedAt,
+                          'MMMM Do YYYY'
+                        )}`}
                   </span>
                 </div>
               </article>
@@ -74,6 +79,7 @@ const Knowledge = ({ posts }) => (
     <style jsx>{`
       .titles {
         margin-right: var(--geist-gap);
+        flex: 4;
       }
 
       .knowledge {
@@ -122,7 +128,7 @@ const Knowledge = ({ posts }) => (
         padding-top: 8px;
       }
 
-      .knowledge-list > :global(a) > .post {
+      .knowledge-list > :global(a) > .article {
         border-bottom: 1px solid #eaeaea;
       }
 
@@ -130,7 +136,7 @@ const Knowledge = ({ posts }) => (
         text-decoration: none;
       }
 
-      .post {
+      .article {
         width: 100%;
         display: flex;
         justify-content: space-between;
@@ -139,37 +145,37 @@ const Knowledge = ({ posts }) => (
         color: #000;
       }
 
-      .post :global(h3) {
+      .article :global(h3) {
         color: #000;
         margin: 0;
         padding-right: 64px;
       }
 
-      .post :global(p) {
+      .article :global(p) {
         margin-bottom: 0;
         color: #222;
         padding-right: 64px;
       }
 
-      .post :global(.avatar-group) {
+      .article :global(.avatar-group) {
         width: auto;
       }
 
-      .post:hover :global(h4) {
+      .article:hover :global(h4) {
         text-decoration: underline;
       }
 
-      .post.contribute {
+      .article.contribute {
         margin-top: 24px;
       }
 
-      .post.contribute :global(h4) {
+      .article.contribute :global(h4) {
       }
 
-      .post.contribute :global(p) {
+      .article.contribute :global(p) {
       }
 
-      .post.contribute .meta .avatar {
+      .article.contribute .meta .avatar {
         width: 24px;
         height: 24px;
         background: #000;
@@ -185,7 +191,7 @@ const Knowledge = ({ posts }) => (
 
       .meta {
         display: flex;
-        flex: 0 0 auto;
+        flex: 1;
         flex-direction: column-reverse;
         justify-content: space-between;
         align-items: flex-end;
@@ -196,14 +202,15 @@ const Knowledge = ({ posts }) => (
         font-size: var(--font-size-small);
         line-height: var(--line-height-primary);
         margin-bottom: 2px;
+        font-size: 0.8em;
       }
 
       @media (max-width: 768px) {
-        .post {
+        .article {
           flex-direction: column;
         }
 
-        .post :global(p) {
+        .article :global(p) {
           padding-right: 0;
         }
 
@@ -219,43 +226,11 @@ const Knowledge = ({ posts }) => (
 export default Knowledge
 
 export async function getStaticProps() {
-  const res = await fetch(`${DATOCMS_KNOWLEDGE_API_ENDPOINT}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-      Authorization: `Bearer ${DATOCMS_KNOWLEDGE_API_KEY}`,
-    },
-    body: JSON.stringify({
-      query: `{
-        allKnowledgeBases(first: 100, orderBy: _firstPublishedAt_DESC) {
-          title
-          slug
-          description
-          
-          _firstPublishedAt
-          _publishedAt
-          _updatedAt
-
-          authors {
-            slug
-            isMemberOfVercelTeam
-            profilePicture {
-              url
-            }
-          }
-          _publishedAt
-          _updatedAt
-        }
-      }`,
-    }),
-  })
-
-  const posts = (await res.json()).data.allKnowledgeBases
+  const articles = await getAllKnowledgeArticles({ first: 100 })
 
   return {
     props: {
-      posts,
+      articles,
     },
     revalidate: 5,
   }

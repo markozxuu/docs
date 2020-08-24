@@ -187,7 +187,7 @@ module.exports = withMDX({
         destination: '/:path+',
       },
       {
-        source: '/api(|/.*)',
+        source: '/api(|/?)',
         permanent: true,
         destination: '/docs/api',
       },
@@ -504,9 +504,8 @@ module.exports = withMDX({
     VIDEO_ASSETS_URL: 'https://assets.vercel.com/video/upload/front',
     RAW_ASSETS_URL: 'https://assets.vercel.com/raw/upload/front',
     ASSETS: isProd ? '/docs/static' : '/static',
-    DATOCMS_KNOWLEDGE_API_ENDPOINT: 'https://graphql.datocms.com/',
-    DATOCMS_KNOWLEDGE_PREVIEW_API_ENDPOINT:
-      'https://graphql.datocms.com/preview',
+    DATOCMS_API_ENDPOINT: 'https://graphql.datocms.com/',
+    DATOCMS_PREVIEW_API_ENDPOINT: 'https://graphql.datocms.com/preview',
   },
 
   webpack(config, { isServer }) {
